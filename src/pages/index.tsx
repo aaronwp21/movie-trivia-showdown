@@ -1,13 +1,16 @@
-import Layout from "@/components/Layout";
-import { getCategories } from "@/lib/hygraph/requests";
-import { hygraphData } from "@/lib/types";
+import React from 'react';
+import Layout from '@/components/Layout';
+import { getCategories } from '@/lib/hygraph/requests';
+import { hygraphData } from '@/lib/types';
+import RoundOne from '@/components/RoundOne';
 
-export default function Home({ data }:hygraphData) {
+export default function Home({ data }: hygraphData) {
+
   return (
     <Layout>
-      <div>Home</div>
+      <RoundOne data={data} />
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps() {
@@ -15,7 +18,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      data
-    }
-  }
+      data,
+    },
+  };
 }
