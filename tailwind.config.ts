@@ -8,10 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        Montserrat: ['Montserrat', 'sans-serif'],
+        Righteous: ['Righteous', 'cursive']
+      },
+      colors: {
+        primary: '#EA0006',
+        easy: '#0000FF',
+        medium: '#FFA500',
+        hard: '#FFFFD0'
       },
     },
   },
