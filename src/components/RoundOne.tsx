@@ -1,9 +1,11 @@
+import { shuffleQuestions } from '@/lib/functions/functions';
 import { questionModal } from '@/lib/types';
 import React, { useState } from 'react';
+import Question from './Question';
 
 type RoundOneProps = {
-  categories: questionModal[]
-}
+  categories: questionModal[];
+};
 
 const round1Rules = [
   'Each Competitor Get Six Questions From Six Pre-Determined Categories',
@@ -12,6 +14,10 @@ const round1Rules = [
 
 function RoundOne({ categories }: RoundOneProps) {
   const [started, setStarted] = useState(false);
+  const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    shuffleQuestions(categories[currentQuestionNum].questionDetails),
+  );
 
   return (
     <>
@@ -31,6 +37,22 @@ function RoundOne({ categories }: RoundOneProps) {
           >
             Start
           </button>
+        </div>
+      </div>
+      <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
+        <h2 className="text-xl underline">Round 1</h2>
+        <h3 className="text-lg">
+          Category: {started ? categories[currentQuestionNum].category : ''}
+        </h3>
+        <div className="flex-1 flex items-center">
+          {started ? (
+            <Question
+              questionNum={String(currentQuestionNum + 1)}
+              questionDetails={currentQuestion[0]}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </>

@@ -27,5 +27,4 @@ export type hygraphData = {
 export type QuestionProps = {
   questionNum: string,
   questionDetails: questionDetails
-  updateCorrect: (bool: boolean) => void;
 }

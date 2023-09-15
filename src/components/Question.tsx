@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { QuestionProps } from '@/lib/types';
 
-function Question({ questionNum, questionDetails, updateCorrect }: QuestionProps) {
+function Question({ questionNum, questionDetails }: QuestionProps) {
   const inputValue = useRef<HTMLInputElement | null>(null);
 
   return (
