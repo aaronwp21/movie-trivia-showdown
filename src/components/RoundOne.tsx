@@ -1,26 +1,17 @@
-import React, { useState, useMemo, useCallback } from 'react';
-import { shuffle } from '@/lib/functions/functions';
-import { hygraphData, questionModal } from '@/lib/types';
+import { questionModal } from '@/lib/types';
+import React, { useState } from 'react';
+
+type RoundOneProps = {
+  categories: questionModal[]
+}
 
 const round1Rules = [
   'Each Competitor Get Six Questions From Six Pre-Determined Categories',
   'Questions Are Worth One Point Each',
 ];
 
-function RoundOne({ data }: hygraphData) {
+function RoundOne({ categories }: RoundOneProps) {
   const [started, setStarted] = useState(false);
-  const dataArr: questionModal[] = useMemo(() => [], []);
-
-  const getCategories = useCallback(() => {
-    for (const [key, value] of Object.entries(data)) {
-      dataArr.push({
-        category: key,
-        questionDetails: value,
-      });
-    }
-    shuffle(dataArr);
-    return dataArr.slice(0, 6);
-  }, [dataArr, data]);
 
   return (
     <>
