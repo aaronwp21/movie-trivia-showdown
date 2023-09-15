@@ -23,3 +23,9 @@ export type hygraphData = {
     starWarss: questionDetails[];
   };
 };
+
+export type QuestionProps = {
+  questionNum: string,
+  questionDetails: questionDetails
+  updateCorrect: (bool: boolean) => void;
+}
