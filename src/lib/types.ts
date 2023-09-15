@@ -6,5 +6,20 @@ export type questionDetails = {
 
 export type questionModal = {
   category: string;
-  questionDetails: questionDetails[]
+  questionDetails: questionDetails[];
+};
+
+export type hygraphData = {
+  data: {
+    actionMoviess: questionDetails[];
+    animatedMoviess: questionDetails[];
+    fantasyMoviess: questionDetails[];
+    movieReleaseDatess: questionDetails[];
+    ninetiesMoviess: questionDetails[];
+    nolanMoviess: questionDetails[];
+    sciFiMoviess: questionDetails[];
+    scorseseMoviess: questionDetails[];
+    sportsMoviess: questionDetails[];
+    starWarss: questionDetails[];
+  };
 };
