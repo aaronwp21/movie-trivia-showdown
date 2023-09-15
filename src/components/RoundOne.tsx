@@ -1,6 +1,7 @@
+import React, { useState, useContext } from 'react';
+import { QuestionsContext } from './contexts/questions.context';
 import { shuffleQuestions } from '@/lib/functions/functions';
 import { questionModal } from '@/lib/types';
-import React, { useState } from 'react';
 import Question from './Question';
 
 type RoundOneProps = {
@@ -18,6 +19,8 @@ function RoundOne({ categories }: RoundOneProps) {
   const [currentQuestion, setCurrentQuestion] = useState(
     shuffleQuestions(categories[currentQuestionNum].questionDetails),
   );
+
+  const { round1Score, onUpdateRound1Score } = useContext(QuestionsContext);
 
   return (
     <>
@@ -49,6 +52,8 @@ function RoundOne({ categories }: RoundOneProps) {
             <Question
               questionNum={String(currentQuestionNum + 1)}
               questionDetails={currentQuestion[0]}
+              score={round1Score}
+              updateScore={onUpdateRound1Score}
             />
           ) : (
             ''

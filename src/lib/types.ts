@@ -26,5 +26,7 @@ export type hygraphData = {
 
 export type QuestionProps = {
   questionNum: string,
-  questionDetails: questionDetails
+  questionDetails: questionDetails,
+  score: number
+  updateScore: (score: number) => void;
 }
