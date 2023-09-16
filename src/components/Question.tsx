@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { QuestionProps } from '@/lib/types';
 
-function Question({ questionNum, questionDetails, score, updateScore }: QuestionProps) {
+function Question({ questionNum, questionDetails, score, updateScore, currentQuestionNum, updateCurrentQuestionNum }: QuestionProps) {
   const inputValue = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = () => {
@@ -9,8 +9,10 @@ function Question({ questionNum, questionDetails, score, updateScore }: Question
       if (inputValue.current.value === questionDetails.answer) {
         updateScore(score + 1)
         inputValue.current.value = ''
+        updateCurrentQuestionNum(currentQuestionNum + 1);
       } else {
         inputValue.current.value = ''
+        updateCurrentQuestionNum(currentQuestionNum + 1);
       }
     }
   }

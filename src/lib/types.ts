@@ -29,4 +29,6 @@ export type QuestionProps = {
   questionDetails: questionDetails,
   score: number
   updateScore: (score: number) => void;
+  currentQuestionNum: number;
+  updateCurrentQuestionNum: (newNum: number) => void;
 }
