@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { QuestionsContext } from './contexts/questions.context';
 import { shuffleQuestions } from '@/lib/functions/functions';
-import { questionModal } from '@/lib/types';
+import { questionDetails, questionModal } from '@/lib/types';
 import Question from './Question';
 
 type RoundOneProps = {
@@ -16,11 +16,13 @@ const round1Rules = [
 function RoundOne({ categories }: RoundOneProps) {
   const [started, setStarted] = useState(false);
   const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(
-    shuffleQuestions(categories[currentQuestionNum].questionDetails),
-  );
+  const [currentQuestion, setCurrentQuestion] = useState<questionDetails[]>([]);
 
   useEffect(() => {
+    if (currentQuestionNum === 6) {
+      return;
+    }
+
     setCurrentQuestion(
       shuffleQuestions(categories[currentQuestionNum].questionDetails),
     );
@@ -28,8 +30,8 @@ function RoundOne({ categories }: RoundOneProps) {
 
   const { round1Score, onUpdateRound1Score } = useContext(QuestionsContext);
 
-  if (currentQuestionNum === 5) {
-    return <div>Round 2</div>
+  if (currentQuestionNum === 6) {
+    return <div>Round 2</div>;
   }
 
   return (
