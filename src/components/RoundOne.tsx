@@ -28,10 +28,11 @@ function RoundOne({ categories }: RoundOneProps) {
     );
   }, [categories, currentQuestionNum]);
 
-  const { round1Score, onUpdateRound1Score } = useContext(QuestionsContext);
+  const { round1Score, onUpdateRound1Score, onUpdateStartRound2 } = useContext(QuestionsContext);
 
   if (currentQuestionNum === 6) {
-    return <div>Round 2</div>;
+    onUpdateStartRound2(true);
+    return <div className='hidden'></div>;
   }
 
   return (
