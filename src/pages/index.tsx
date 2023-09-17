@@ -4,6 +4,7 @@ import { getCategories } from '@/lib/hygraph/requests';
 import { hygraphData, questionModal } from '@/lib/types';
 import RoundOne from '@/components/RoundOne';
 import { shuffle } from '@/lib/functions/functions';
+import RoundTwo from '@/components/RoundTwo';
 
 export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
@@ -21,7 +22,8 @@ export default function Home({ data }: hygraphData) {
 
   return (
     <Layout>
-      <RoundOne categories={roundOneCategories()} />
+      {/* <RoundOne categories={roundOneCategories()} /> */}
+      <RoundTwo />
     </Layout>
   );
 }
