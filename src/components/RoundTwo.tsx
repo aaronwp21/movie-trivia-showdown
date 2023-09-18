@@ -1,4 +1,9 @@
 import React, { useState } from 'react'
+import { questionModal } from '@/lib/types';
+
+type RoundTwoProps = {
+  categories: questionModal[];
+};
 
 const round2Rules = [
   'Spin the Category Wheel',
@@ -8,7 +13,7 @@ const round2Rules = [
   'If Competitor Misses It Can Be Stolen'
 ]
 
-function RoundTwo() {
+function RoundTwo({ categories }: RoundTwoProps) {
   const [started, setStarted] = useState(false);
 
   return (

@@ -8,6 +8,7 @@ import RoundTwo from '@/components/RoundTwo';
 
 export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
+  const allQuestions: questionModal[] = useMemo(() => [], []);
 
   const roundOneCategories = useCallback(() => {
     for (const [key, value] of Object.entries(data)) {
@@ -20,10 +21,20 @@ export default function Home({ data }: hygraphData) {
     return dataArr.slice(0, 6);
   }, [dataArr, data]);
 
+  const allCategories = useCallback(() => {
+    for (const [key, value] of Object.entries(data)) {
+      allQuestions.push({
+        category: key,
+        questionDetails: value
+      })
+    }
+    return allQuestions;
+  }, [allQuestions, data])
+
   return (
     <Layout>
       {/* <RoundOne categories={roundOneCategories()} /> */}
-      <RoundTwo />
+      <RoundTwo categories={allCategories()} />
     </Layout>
   );
 }
