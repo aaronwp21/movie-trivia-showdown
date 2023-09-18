@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { questionModal } from '@/lib/types';
+import QuestionPicker from './QuestionPicker';
 
 type RoundTwoProps = {
   categories: questionModal[];
@@ -37,6 +38,7 @@ function RoundTwo({ categories }: RoundTwoProps) {
           </div>
         </div>
         <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
+          <QuestionPicker />
           {/* <h2 className="text-xl underline">Round 1</h2>
           <h3 className="text-lg">
             Category: {started ? categories[currentQuestionNum].category : ''}
