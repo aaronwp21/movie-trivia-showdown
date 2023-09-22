@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { questionPickerRandomNumber } from '@/lib/functions/functions';
+import { questionPickerRandomNumber, shuffle3Questions } from '@/lib/functions/functions';
+import { questionDetails, questionModal } from '@/lib/types';
+
+type QuestionPickerProps = {
+  allCategories: questionModal[];
+  setChosenCategoryArr: React.Dispatch<React.SetStateAction<questionDetails[]>>
+};
 
 const categories = [
   'Action Movies',
@@ -16,17 +22,34 @@ const categories = [
   `Oppenent's Choice`,
 ];
 
-function QuestionPicker() {
+function QuestionPicker({ allCategories, setChosenCategoryArr }: QuestionPickerProps) {
   const [spinNum, setSpinNum] = useState(0);
   const [selectedNum, setSelectedNum] = useState(-1);
 
-  const spin = () => {
+  const pick3Questions = () => {
+    const shuffled = shuffle3Questions(allCategories[selectedNum].questionDetails);
+    return shuffled
+  }
+
+  const onSpin = () => {
     setSpinNum(spinNum + 1);
     const num = questionPickerRandomNumber();
     setSelectedNum(num);
-    if (spinNum === 0) {
-    }
   };
+
+  const onKeep = () => {
+    switch (selectedNum) {
+      case 10:
+        console.log('spinners choice');
+        break;
+      case 11:
+        console.log('Opponents choice');
+        break;
+      default:
+        setChosenCategoryArr(pick3Questions())
+        break;
+    }
+  }
 
   return (
     <>
@@ -55,7 +78,7 @@ function QuestionPicker() {
       </p>
       <div className="flex justify-center gap-4">
         <button
-          onClick={() => spin()}
+          onClick={() => onSpin()}
           className={`${
             spinNum === 2 ? 'hidden' : 'block'
           } bg-white text-primary font-bold border-2 border-white py-2 px-16 rounded-lg hover:border-white hover:bg-primary hover:text-white`}
@@ -63,6 +86,7 @@ function QuestionPicker() {
           Spin
         </button>
         <button
+          onClick={() => onKeep()}
           className={`${
             spinNum === 0 ? 'hidden' : 'block'
           } bg-black text-white font-bold py-2 px-16 rounded-lg`}
