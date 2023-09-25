@@ -10,6 +10,28 @@ const round3Rules = [
   'Questions in Order Are Worth 2, 3, and 5 Points',
 ];
 
+const oneToNineteen = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+];
+
 function RoundThree({ categories }: RoundThreeProps) {
   const [started, setStarted] = useState(false);
 
@@ -31,6 +53,20 @@ function RoundThree({ categories }: RoundThreeProps) {
           >
             Start
           </button>
+        </div>
+      </div>
+      <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4">
+          {oneToNineteen.map((number, i) => {
+            return (
+              <div
+                key={i}
+                className="rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center"
+              >
+                <p>{number}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
