@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useContext } from 'react';
+import { QuestionsContext } from '@/components/contexts/questions.context';
 import Layout from '@/components/Layout';
 import { getCategories } from '@/lib/hygraph/requests';
 import { hygraphData, questionModal } from '@/lib/types';
@@ -9,6 +10,8 @@ import RoundTwo from '@/components/RoundTwo';
 export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
   const allQuestions: questionModal[] = useMemo(() => [], []);
+
+  const { startRound2, startRound3 } = useContext(QuestionsContext);
 
   const roundOneCategories = useCallback(() => {
     for (const [key, value] of Object.entries(data)) {
@@ -33,8 +36,9 @@ export default function Home({ data }: hygraphData) {
 
   return (
     <Layout>
-      {/* <RoundOne categories={roundOneCategories()} /> */}
-      <RoundTwo categories={allCategories()} />
+      {startRound2 === false ? <RoundOne categories={roundOneCategories()} /> : ''}
+      {startRound2 === true && startRound3 === false ? <RoundTwo categories={allCategories()} /> : ''}
+      {startRound3 === true ? <div>Round 3</div> : ''}
     </Layout>
   );
 }
