@@ -56,7 +56,7 @@ export function shuffle3Questions(array: questionDetails[]) {
 }
 
 export const questionPickerRandomNumber = () => {
-  const num = Math.floor(Math.random() * 12);
+  const num = Math.floor(Math.random() * 11);
 
   return num;
 }

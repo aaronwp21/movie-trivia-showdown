@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { questionPickerRandomNumber, shuffle3Questions } from '@/lib/functions/functions';
+import {
+  questionPickerRandomNumber,
+  shuffle3Questions,
+} from '@/lib/functions/functions';
 import { questionDetails, questionModal } from '@/lib/types';
 
 type QuestionPickerProps = {
   allCategories: questionModal[];
-  setChosenCategoryArr: React.Dispatch<React.SetStateAction<questionDetails[]>>
+  setChosenCategoryArr: React.Dispatch<React.SetStateAction<questionDetails[]>>;
 };
 
 const categories = [
@@ -19,17 +22,21 @@ const categories = [
   'Sports Movies',
   'Star Wars',
   `Spinner's Choice`,
-  `Oppenent's Choice`,
 ];
 
-function QuestionPicker({ allCategories, setChosenCategoryArr }: QuestionPickerProps) {
+function QuestionPicker({
+  allCategories,
+  setChosenCategoryArr,
+}: QuestionPickerProps) {
   const [spinNum, setSpinNum] = useState(0);
   const [selectedNum, setSelectedNum] = useState(-1);
 
   const pick3Questions = () => {
-    const shuffled = shuffle3Questions(allCategories[selectedNum].questionDetails);
-    return shuffled
-  }
+    const shuffled = shuffle3Questions(
+      allCategories[selectedNum].questionDetails,
+    );
+    return shuffled;
+  };
 
   const onSpin = () => {
     setSpinNum(spinNum + 1);
@@ -42,14 +49,11 @@ function QuestionPicker({ allCategories, setChosenCategoryArr }: QuestionPickerP
       case 10:
         console.log('spinners choice');
         break;
-      case 11:
-        console.log('Opponents choice');
-        break;
       default:
-        setChosenCategoryArr(pick3Questions())
+        setChosenCategoryArr(pick3Questions());
         break;
     }
-  }
+  };
 
   return (
     <>
@@ -57,12 +61,21 @@ function QuestionPicker({ allCategories, setChosenCategoryArr }: QuestionPickerP
         {categories.map((category, i) => {
           return (
             <li
+              onClick={() => {
+                if(selectedNum === 10) {
+                  setSelectedNum(i);
+                }
+              }}
               key={i}
               className={`${
                 selectedNum === i
                   ? 'bg-white text-primary font-bold'
                   : 'bg-black'
-              } px-2 py-4 text-center`}
+              } px-2 py-4 text-center ${
+                selectedNum === 10
+                  ? 'hover:bg-white hover:text-primary hover:font-bold hover:cursor-pointer'
+                  : ''
+              }`}
             >
               {category}
             </li>
@@ -75,6 +88,13 @@ function QuestionPicker({ allCategories, setChosenCategoryArr }: QuestionPickerP
         } text-center text-lg font-semibold mb-4`}
       >
         Would You Like to Spin Again?
+      </p>
+      <p
+        className={`${
+          selectedNum === 10 ? 'block' : 'hidden'
+        } text-center text-lg font-semibold mb-4`}
+      >
+        Please Select a Category
       </p>
       <div className="flex justify-center gap-4">
         <button
