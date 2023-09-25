@@ -23,11 +23,12 @@ function RoundTwo({ categories }: RoundTwoProps) {
   );
   const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
 
-  const { round2Score, onUpdateRound2Score } = useContext(QuestionsContext);
+  const { round2Score, onUpdateRound2Score, onUpdateStartRound3 } =
+    useContext(QuestionsContext);
 
   if (currentQuestionNum === 3) {
-    console.log('questions answered')
-    return <div className='hidden'></div>;
+    onUpdateStartRound3(true);
+    return <div className="hidden"></div>;
   }
 
   return (
