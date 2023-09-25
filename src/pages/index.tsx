@@ -6,6 +6,7 @@ import { hygraphData, questionModal } from '@/lib/types';
 import RoundOne from '@/components/RoundOne';
 import { shuffle } from '@/lib/functions/functions';
 import RoundTwo from '@/components/RoundTwo';
+import RoundThree from '@/components/RoundThree';
 
 export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
@@ -36,9 +37,10 @@ export default function Home({ data }: hygraphData) {
 
   return (
     <Layout>
-      {startRound2 === false ? <RoundOne categories={roundOneCategories()} /> : ''}
+      {/* {startRound2 === false ? <RoundOne categories={roundOneCategories()} /> : ''}
       {startRound2 === true && startRound3 === false ? <RoundTwo categories={allCategories()} /> : ''}
-      {startRound3 === true ? <div>Round 3</div> : ''}
+      {startRound3 === true ? <RoundThree categories={allCategories()} /> : ''} */}
+      <RoundThree categories={allCategories()} />
     </Layout>
   );
 }
