@@ -34,6 +34,27 @@ const oneToNineteen = [
 
 function RoundThree({ categories }: RoundThreeProps) {
   const [started, setStarted] = useState(false);
+  const [chosenNumbers, setChosenNumbers] = useState<number[]>([]);
+
+  const selectNumber = (num: number) => {
+    setChosenNumbers([...chosenNumbers, num])
+  }
+
+  const deselectNumber = (num: number) => {
+    const newArray = chosenNumbers.filter((number) => {
+      return number !== num;
+    })
+
+    setChosenNumbers(newArray)
+  }
+
+  const checkNumber = (num: number) => {
+    if (chosenNumbers.includes(num)) {
+      deselectNumber(num);
+    } else {
+      selectNumber(num);
+    }
+  }
 
   return (
     <>
@@ -60,8 +81,9 @@ function RoundThree({ categories }: RoundThreeProps) {
           {oneToNineteen.map((number, i) => {
             return (
               <div
+                onClick={() => checkNumber(i + 1)}
                 key={i}
-                className="rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center"
+                className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center ${chosenNumbers.includes(i + 1) ? 'bg-white text-primary font-bold': ''}`}
               >
                 <p>{number}</p>
               </div>
