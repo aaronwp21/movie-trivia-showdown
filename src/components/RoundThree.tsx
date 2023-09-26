@@ -37,24 +37,27 @@ function RoundThree({ categories }: RoundThreeProps) {
   const [chosenNumbers, setChosenNumbers] = useState<number[]>([]);
 
   const selectNumber = (num: number) => {
-    setChosenNumbers([...chosenNumbers, num])
-  }
+    setChosenNumbers([...chosenNumbers, num]);
+  };
 
   const deselectNumber = (num: number) => {
     const newArray = chosenNumbers.filter((number) => {
       return number !== num;
-    })
+    });
 
-    setChosenNumbers(newArray)
-  }
+    setChosenNumbers(newArray);
+  };
 
   const checkNumber = (num: number) => {
     if (chosenNumbers.includes(num)) {
       deselectNumber(num);
     } else {
+      if (chosenNumbers.length === 3) {
+        return null;
+      }
       selectNumber(num);
     }
-  }
+  };
 
   return (
     <>
@@ -77,13 +80,20 @@ function RoundThree({ categories }: RoundThreeProps) {
         </div>
       </div>
       <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
+        <h2 className="mb-8 text-center text-lg font-bold underline underline-offset-4">
+          Select 3 Numbers
+        </h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4">
           {oneToNineteen.map((number, i) => {
             return (
               <div
                 onClick={() => checkNumber(i + 1)}
                 key={i}
-                className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center ${chosenNumbers.includes(i + 1) ? 'bg-white text-primary font-bold': ''}`}
+                className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center ${
+                  chosenNumbers.includes(i + 1)
+                    ? 'bg-white text-primary font-bold'
+                    : ''
+                }`}
               >
                 <p>{number}</p>
               </div>
