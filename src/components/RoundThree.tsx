@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { QuestionsContext } from './contexts/questions.context';
 import { questionModal } from '@/lib/types';
+import Question from './Question';
 
 type RoundThreeProps = {
   categories: questionModal[];
@@ -10,31 +12,15 @@ const round3Rules = [
   'Questions in Order Are Worth 2, 3, and 5 Points',
 ];
 
-const oneToNineteen = [
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
-  '16',
-  '17',
-  '18',
-  '19',
-];
+const oneToNineteen = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
 function RoundThree({ categories }: RoundThreeProps) {
   const [started, setStarted] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
   const [chosenNumbers, setChosenNumbers] = useState<number[]>([]);
+  const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
+
+  const { round3Score, onUpdateRound3Score } = useContext(QuestionsContext);
 
   const selectNumber = (num: number) => {
     setChosenNumbers([...chosenNumbers, num]);
@@ -59,6 +45,10 @@ function RoundThree({ categories }: RoundThreeProps) {
     }
   };
 
+  if (currentQuestionNum === 3) {
+    return <div className="hidden"></div>;
+  }
+
   return (
     <>
       <div className={`${started ? 'hidden' : 'flex'} flex-1`}>
@@ -80,37 +70,57 @@ function RoundThree({ categories }: RoundThreeProps) {
         </div>
       </div>
       <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
-        <h2 className="mb-8 text-center text-lg font-bold underline underline-offset-4">
-          Select 3 Numbers
-        </h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4 mb-8">
-          {oneToNineteen.map((number, i) => {
-            return (
-              <div
-                onClick={() => checkNumber(i + 1)}
-                key={i}
-                className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center cursor-pointer ${
-                  chosenNumbers.includes(i + 1)
-                    ? 'bg-white text-primary font-bold'
-                    : ''
+        {!confirmed ? (
+          <>
+            <h2 className="mb-8 text-center text-lg font-bold underline underline-offset-4">
+              Select 3 Numbers
+            </h2>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4 mb-8">
+              {oneToNineteen.map((number, i) => {
+                return (
+                  <div
+                    onClick={() => checkNumber(i + 1)}
+                    key={i}
+                    className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center cursor-pointer ${
+                      chosenNumbers.includes(i + 1)
+                        ? 'bg-white text-primary font-bold'
+                        : ''
+                    }`}
+                  >
+                    <p>{number}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex justify-center">
+              <button
+                onClick={() => setConfirmed(true)}
+                className={`px-8 py-2 rounded-lg ${
+                  chosenNumbers.length === 3
+                    ? 'bg-white text-primary font-bold cursor-pointer'
+                    : 'bg-gray-500'
                 }`}
               >
-                <p>{number}</p>
-              </div>
-            );
-          })}
-        </div>
-        <div className="flex justify-center">
-          <button
-            className={`px-8 py-2 rounded-lg ${
-              chosenNumbers.length === 3
-                ? 'bg-white text-primary font-bold cursor-pointer'
-                : 'bg-gray-500'
-            }`}
-          >
-            Confirm
-          </button>
-        </div>
+                Confirm
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <Question
+              questionNum={String(currentQuestionNum + 1)}
+              questionDetails={
+                categories[chosenNumbers[currentQuestionNum]].questionDetails[
+                  currentQuestionNum
+                ]
+              }
+              score={round3Score}
+              updateScore={onUpdateRound3Score}
+              currentQuestionNum={currentQuestionNum}
+              updateCurrentQuestionNum={setCurrentQuestionNum}
+            />
+          </>
+        )}
       </div>
     </>
   );

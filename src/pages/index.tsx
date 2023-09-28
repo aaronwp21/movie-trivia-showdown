@@ -29,18 +29,29 @@ export default function Home({ data }: hygraphData) {
     for (const [key, value] of Object.entries(data)) {
       allQuestions.push({
         category: key,
-        questionDetails: value
-      })
+        questionDetails: value,
+      });
     }
     return allQuestions;
-  }, [allQuestions, data])
+  }, [allQuestions, data]);
+
+  const roundThreeCategories = useCallback(() => {
+    for (const [key, value] of Object.entries(data)) {
+      dataArr.push({
+        category: key,
+        questionDetails: value,
+      });
+    }
+    shuffle(dataArr);
+    return dataArr;
+  }, [dataArr, data]);
 
   return (
     <Layout>
       {/* {startRound2 === false ? <RoundOne categories={roundOneCategories()} /> : ''}
       {startRound2 === true && startRound3 === false ? <RoundTwo categories={allCategories()} /> : ''}
       {startRound3 === true ? <RoundThree categories={allCategories()} /> : ''} */}
-      <RoundThree categories={allCategories()} />
+      <RoundThree categories={roundThreeCategories()} />
     </Layout>
   );
 }
