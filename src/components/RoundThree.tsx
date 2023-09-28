@@ -83,13 +83,13 @@ function RoundThree({ categories }: RoundThreeProps) {
         <h2 className="mb-8 text-center text-lg font-bold underline underline-offset-4">
           Select 3 Numbers
         </h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4 mb-8">
           {oneToNineteen.map((number, i) => {
             return (
               <div
                 onClick={() => checkNumber(i + 1)}
                 key={i}
-                className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center ${
+                className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center cursor-pointer ${
                   chosenNumbers.includes(i + 1)
                     ? 'bg-white text-primary font-bold'
                     : ''
@@ -99,6 +99,17 @@ function RoundThree({ categories }: RoundThreeProps) {
               </div>
             );
           })}
+        </div>
+        <div className="flex justify-center">
+          <button
+            className={`px-8 py-2 rounded-lg ${
+              chosenNumbers.length === 3
+                ? 'bg-white text-primary font-bold cursor-pointer'
+                : 'bg-gray-500'
+            }`}
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </>
