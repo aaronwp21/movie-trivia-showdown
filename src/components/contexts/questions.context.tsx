@@ -6,11 +6,13 @@ type QuestionsContextProps = {
   onUpdateRound3Score: (score: number) => void;
   onUpdateStartRound2: (bool: boolean) => void;
   onUpdateStartRound3: (bool: boolean) => void;
+  onUpdateStartResults: (bool: boolean) => void;
   round1Score: number;
   round2Score: number;
   round3Score: number;
   startRound2: boolean;
   startRound3: boolean;
+  startResults: boolean;
 };
 
 export const QuestionsContext = createContext<QuestionsContextProps>({
@@ -19,11 +21,13 @@ export const QuestionsContext = createContext<QuestionsContextProps>({
   onUpdateRound3Score: () => null,
   onUpdateStartRound2: () => null,
   onUpdateStartRound3: () => null,
+  onUpdateStartResults: () => null,
   round1Score: 0,
   round2Score: 0,
   round3Score: 0,
   startRound2: false,
   startRound3: false,
+  startResults: false,
 });
 
 export const QuestionsProvider = ({ children }: React.PropsWithChildren) => {
@@ -32,6 +36,7 @@ export const QuestionsProvider = ({ children }: React.PropsWithChildren) => {
   const [round3Score, setRound3Score] = useState<number>(0);
   const [startRound2, setStartRound2] = useState<boolean>(false);
   const [startRound3, setStartRound3] = useState<boolean>(false);
+  const [startResults, setStartResults] = useState<boolean>(false);
 
   const onUpdateRound1Score = useCallback((score: number) => {
     setRound1Score(score);
@@ -51,7 +56,11 @@ export const QuestionsProvider = ({ children }: React.PropsWithChildren) => {
 
   const onUpdateStartRound3 = useCallback((bool: boolean) => {
     setStartRound3(bool);
-  }, [])
+  }, []);
+
+  const onUpdateStartResults = useCallback((bool: boolean) => {
+    setStartResults(bool);
+  }, []);
 
   return (
     <QuestionsContext.Provider
@@ -61,11 +70,13 @@ export const QuestionsProvider = ({ children }: React.PropsWithChildren) => {
         onUpdateRound3Score,
         onUpdateStartRound2,
         onUpdateStartRound3,
+        onUpdateStartResults,
         round1Score,
         round2Score,
         round3Score,
         startRound2,
-        startRound3
+        startRound3,
+        startResults,
       }}
     >
       {children}

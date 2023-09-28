@@ -12,7 +12,8 @@ export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
   const allQuestions: questionModal[] = useMemo(() => [], []);
 
-  const { startRound2, startRound3 } = useContext(QuestionsContext);
+  const { startRound2, startRound3, startResults } =
+    useContext(QuestionsContext);
 
   const roundOneCategories = useCallback(() => {
     for (const [key, value] of Object.entries(data)) {
@@ -48,10 +49,21 @@ export default function Home({ data }: hygraphData) {
 
   return (
     <Layout>
-      {/* {startRound2 === false ? <RoundOne categories={roundOneCategories()} /> : ''}
-      {startRound2 === true && startRound3 === false ? <RoundTwo categories={allCategories()} /> : ''}
-      {startRound3 === true ? <RoundThree categories={allCategories()} /> : ''} */}
-      <RoundThree categories={roundThreeCategories()} />
+      {startRound2 === false ? (
+        <RoundOne categories={roundOneCategories()} />
+      ) : (
+        ''
+      )}
+      {startRound2 === true && startRound3 === false ? (
+        <RoundTwo categories={allCategories()} />
+      ) : (
+        ''
+      )}
+      {startRound3 === true && startResults === false ? (
+        <RoundThree categories={roundThreeCategories()} />
+      ) : (
+        ''
+      )}
     </Layout>
   );
 }
