@@ -20,7 +20,7 @@ function RoundThree({ categories }: RoundThreeProps) {
   const [chosenNumbers, setChosenNumbers] = useState<number[]>([]);
   const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
 
-  const { round3Score, onUpdateRound3Score } = useContext(QuestionsContext);
+  const { round3Score, onUpdateRound3Score, onUpdateStartResults } = useContext(QuestionsContext);
 
   const selectNumber = (num: number) => {
     setChosenNumbers([...chosenNumbers, num]);
@@ -46,6 +46,7 @@ function RoundThree({ categories }: RoundThreeProps) {
   };
 
   if (currentQuestionNum === 3) {
+    onUpdateStartResults(true)
     return <div className="hidden"></div>;
   }
 

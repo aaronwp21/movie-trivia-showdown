@@ -7,6 +7,7 @@ import RoundOne from '@/components/RoundOne';
 import { shuffle } from '@/lib/functions/functions';
 import RoundTwo from '@/components/RoundTwo';
 import RoundThree from '@/components/RoundThree';
+import Results from '@/components/Results';
 
 export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
@@ -64,6 +65,7 @@ export default function Home({ data }: hygraphData) {
       ) : (
         ''
       )}
+      {startResults === true ? <Results /> : ''}
     </Layout>
   );
 }
