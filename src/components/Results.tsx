@@ -1,30 +1,35 @@
-import React, { useContext } from 'react'
-import { QuestionsContext } from './contexts/questions.context'
+import React, { useContext } from 'react';
+import { QuestionsContext } from './contexts/questions.context';
 
 function Results() {
-  const { round1Score, round2Score, round3Score } = useContext(QuestionsContext)
+  const { round1Score, round2Score, round3Score } =
+    useContext(QuestionsContext);
+
+  const total = round1Score + round2Score + round3Score;
 
   return (
-    <div className='flex flex-col flex-1'>
-      <h2 className='text-center text-2xl font-semibold underline underline-offset-4'>Results</h2>
+    <div className="flex flex-col flex-1">
+      <h2 className="mb-8 text-center text-2xl font-semibold underline underline-offset-4">
+        Results
+      </h2>
       <div>
-        <ol>
-          <li>
-            Round 1: {round1Score}
+        <ol className='text-xl flex flex-col gap-6 text-center'>
+          <li className='p-2 border-2'>
+            <span className='font-semibold'>Round 1:</span> {round1Score} / 6
           </li>
-          <li>
-            Round 2: {round2Score}
+          <li className='p-2 border-2'>
+            <span className='font-semibold'>Round 2:</span> {round2Score} / 3
           </li>
-          <li>
-            Round 3: {round3Score}
+          <li className='p-2 border-2'>
+            <span className='font-semibold'>Round 3:</span> {round3Score} / 3
           </li>
-          <li>
-            Total: {round1Score + round2Score + round3Score}
+          <li className='p-2 border-2 text-2xl'>
+            <span className='font-semibold'>Total:</span> {total} / 12 = <span className='font-bold'>{(100 * total) / 12}%</span>
           </li>
         </ol>
       </div>
     </div>
-  )
+  );
 }
 
-export default Results
+export default Results;

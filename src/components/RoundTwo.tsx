@@ -11,9 +11,7 @@ type RoundTwoProps = {
 const round2Rules = [
   'Spin the Category Wheel',
   `Can Spin Again Once if You Don't Like the Category`,
-  '3 Questions Worth 2 Points',
-  'If Multiple Choice is Selected Questions Go Down to 1 Point',
-  'If Competitor Misses It Can Be Stolen',
+  '3 Questions Worth 1 Point',
 ];
 
 function RoundTwo({ categories }: RoundTwoProps) {

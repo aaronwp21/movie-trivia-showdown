@@ -9,7 +9,7 @@ type RoundThreeProps = {
 
 const round3Rules = [
   'Player Selects 3 Categories from 1 to 19',
-  'Questions in Order Are Worth 2, 3, and 5 Points',
+  'Questions Are Worth 1 Point Each',
 ];
 
 const oneToNineteen = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
@@ -20,7 +20,8 @@ function RoundThree({ categories }: RoundThreeProps) {
   const [chosenNumbers, setChosenNumbers] = useState<number[]>([]);
   const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
 
-  const { round3Score, onUpdateRound3Score, onUpdateStartResults } = useContext(QuestionsContext);
+  const { round3Score, onUpdateRound3Score, onUpdateStartResults } =
+    useContext(QuestionsContext);
 
   const selectNumber = (num: number) => {
     setChosenNumbers([...chosenNumbers, num]);
@@ -46,7 +47,7 @@ function RoundThree({ categories }: RoundThreeProps) {
   };
 
   if (currentQuestionNum === 3) {
-    onUpdateStartResults(true)
+    onUpdateStartResults(true);
     return <div className="hidden"></div>;
   }
 
@@ -107,7 +108,7 @@ function RoundThree({ categories }: RoundThreeProps) {
             </div>
           </>
         ) : (
-          <>
+          <div className="flex-1 flex items-center">
             <Question
               questionNum={String(currentQuestionNum + 1)}
               questionDetails={
@@ -120,7 +121,7 @@ function RoundThree({ categories }: RoundThreeProps) {
               currentQuestionNum={currentQuestionNum}
               updateCurrentQuestionNum={setCurrentQuestionNum}
             />
-          </>
+          </div>
         )}
       </div>
     </>
