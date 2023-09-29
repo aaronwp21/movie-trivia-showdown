@@ -86,7 +86,7 @@ function RoundThree({ categories }: RoundThreeProps) {
                     className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center cursor-pointer ${
                       chosenNumbers.includes(i + 1)
                         ? 'bg-white text-primary font-bold'
-                        : ''
+                        : 'text-white'
                     }`}
                   >
                     <p>{number}</p>

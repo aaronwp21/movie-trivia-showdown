@@ -9,7 +9,7 @@ function Layout({ children }: React.PropsWithChildren) {
             Movie Trivia Quiz
           </h1>
         </header>
-        <main className="bg-primary text-white w-full flex-1 font-Montserrat">
+        <main className="bg-primary text-black font-semibold w-full flex-1 font-Montserrat">
           <div className="p-4 h-full flex flex-col">{children}</div>
         </main>
       </div>

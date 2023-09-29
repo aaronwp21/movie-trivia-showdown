@@ -70,7 +70,7 @@ function QuestionPicker({
               className={`${
                 selectedNum === i
                   ? 'bg-white text-primary font-bold'
-                  : 'bg-black'
+                  : 'bg-black text-white'
               } px-2 py-4 text-center ${
                 selectedNum === 10
                   ? 'hover:bg-white hover:text-primary hover:font-bold hover:cursor-pointer'
