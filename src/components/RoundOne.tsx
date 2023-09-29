@@ -56,10 +56,7 @@ function RoundOne({ categories }: RoundOneProps) {
         </div>
       </div>
       <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
-        <h2 className="text-xl underline">Round 1</h2>
-        <h3 className="text-lg">
-          Category: {started ? categories[currentQuestionNum].category : ''}
-        </h3>
+        <h2 className="text-xl underline sm:text-3xl">Round 1</h2>
         <div className="flex-1 flex items-center">
           {started ? (
             <Question

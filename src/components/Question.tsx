@@ -18,7 +18,7 @@ function Question({ questionNum, questionDetails, score, updateScore, currentQue
   }
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 max-w-[1000px] m-auto">
       <p className="text-center text-2xl mb-8">{questionNum}. {questionDetails.question}</p>
       <div className="flex justify-center mb-8">
         <input
