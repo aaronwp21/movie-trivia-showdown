@@ -49,7 +49,7 @@ function RoundTwo({ categories }: RoundTwoProps) {
           </button>
         </div>
       </div>
-      <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
+      <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1 justify-center w-full max-w-[1000px] mx-auto`}>
         {chosenCategoryArr.length === 0 ? (
           <QuestionPicker
             allCategories={categories}

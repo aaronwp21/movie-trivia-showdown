@@ -57,7 +57,7 @@ function QuestionPicker({
 
   return (
     <>
-      <ul className="mb-8 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4 text-sm">
+      <ul className="mb-8 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4 text-sm sm:grid-cols-[repeat(auto-fit,minmax(295px,1fr))] sm:text-xl">
         {categories.map((category, i) => {
           return (
             <li
@@ -71,7 +71,7 @@ function QuestionPicker({
                 selectedNum === i
                   ? 'bg-white text-primary font-bold'
                   : 'bg-black text-white'
-              } px-2 py-4 text-center ${
+              } px-2 py-4 text-center rounded-md ${
                 selectedNum === 10
                   ? 'hover:bg-white hover:text-primary hover:font-bold hover:cursor-pointer'
                   : ''
@@ -85,14 +85,14 @@ function QuestionPicker({
       <p
         className={`${
           spinNum === 0 || spinNum === 2 ? 'hidden' : 'block'
-        } text-center text-lg font-semibold mb-4`}
+        } text-center text-lg font-semibold mb-8 sm:text-xl`}
       >
         Would You Like to Spin Again?
       </p>
       <p
         className={`${
           selectedNum === 10 ? 'block' : 'hidden'
-        } text-center text-lg font-semibold mb-4`}
+        } text-center text-lg font-semibold mb-8 sm:text-xl`}
       >
         Please Select a Category
       </p>
@@ -101,7 +101,7 @@ function QuestionPicker({
           onClick={() => onSpin()}
           className={`${
             spinNum === 2 ? 'hidden' : 'block'
-          } bg-white text-primary font-bold border-2 border-white py-2 px-16 rounded-lg hover:border-white hover:bg-primary hover:text-white`}
+          } bg-white text-primary font-bold border-2 border-white py-2 px-16 rounded-lg hover:border-white hover:bg-primary hover:text-white sm:text-xl`}
         >
           Spin
         </button>
@@ -109,7 +109,7 @@ function QuestionPicker({
           onClick={() => onKeep()}
           className={`${
             spinNum === 0 ? 'hidden' : 'block'
-          } bg-black text-white font-bold py-2 px-16 rounded-lg`}
+          } bg-black text-white font-bold py-2 px-16 rounded-lg sm:text-xl`}
         >
           Keep
         </button>
