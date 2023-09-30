@@ -43,7 +43,7 @@ function RoundTwo({ categories }: RoundTwoProps) {
           </ul>
           <button
             onClick={() => setStarted(true)}
-            className="bg-white text-primary font-bold border-2 border-white py-2 px-16 rounded-lg hover:border-white hover:bg-primary hover:text-white"
+            className="bg-white text-primary font-bold border-2 border-white py-2 px-16 rounded-lg hover:border-white hover:bg-primary hover:text-white sm:text-2xl"
           >
             Start
           </button>
