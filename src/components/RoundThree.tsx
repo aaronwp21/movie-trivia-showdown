@@ -71,23 +71,23 @@ function RoundThree({ categories }: RoundThreeProps) {
           </button>
         </div>
       </div>
-      <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1`}>
+      <div className={`${started ? 'flex' : 'hidden'} flex-col flex-1 justify-center w-full max-w-[1000px] mx-auto`}>
         {!confirmed ? (
           <>
-            <h2 className="mb-8 text-center text-lg font-bold underline underline-offset-4">
+            <h2 className="mb-8 text-center text-xl font-bold underline underline-offset-4 sm:text-3xl sm:mb-12">
               Select 3 Numbers
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-4 mb-8 sm:mb-12">
               {oneToNineteen.map((number, i) => {
                 return (
                   <div
                     onClick={() => checkNumber(i + 1)}
                     key={i}
-                    className={`rounded-full bg-black aspect-square max-w-[45px] flex justify-center items-center cursor-pointer ${
+                    className={`rounded-full bg-black aspect-square w-full max-w-[45px] flex justify-center items-center cursor-pointer ${
                       chosenNumbers.includes(i + 1)
                         ? 'bg-white text-primary font-bold'
                         : 'text-white'
-                    }`}
+                    } sm:max-w-[75px] sm:text-2xl`}
                   >
                     <p>{number}</p>
                   </div>
@@ -101,7 +101,7 @@ function RoundThree({ categories }: RoundThreeProps) {
                   chosenNumbers.length === 3
                     ? 'bg-white text-primary font-bold cursor-pointer'
                     : 'bg-gray-500'
-                }`}
+                } sm:text-2xl`}
               >
                 Confirm
               </button>
