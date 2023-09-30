@@ -36,7 +36,7 @@ function RoundTwo({ categories }: RoundTwoProps) {
           <h2 className="text-3xl underline underline-offset-4">
             Round 2 Rules
           </h2>
-          <ul className="text-xl flex flex-col gap-12 list-disc p-4">
+          <ul className="text-xl flex flex-col gap-12 list-disc p-4 sm:text-2xl">
             {round2Rules.map((rule, i) => {
               return <li key={i}>{rule}</li>;
             })}

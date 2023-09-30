@@ -42,7 +42,7 @@ function RoundOne({ categories }: RoundOneProps) {
           <h2 className="text-3xl underline underline-offset-4">
             Round 1 Rules
           </h2>
-          <ul className="text-xl flex flex-col gap-12 list-disc p-4">
+          <ul className="text-xl flex flex-col gap-12 list-disc p-4 sm:text-2xl">
             {round1Rules.map((rule, i) => {
               return <li key={i}>{rule}</li>;
             })}
