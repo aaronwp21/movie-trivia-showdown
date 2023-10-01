@@ -23,7 +23,7 @@ function Question({ questionNum, questionDetails, score, updateScore, currentQue
       <div className="flex justify-center mb-8">
         <input
           ref={inputValue}
-          className="w-full py-2 rounded-3xl text-center text-xl bg-black focus-visible:outline-white"
+          className="w-full py-2 rounded-3xl text-center text-xl text-white bg-black focus-visible:outline-white"
           type="text"
           id="answer"
           name="answer"
