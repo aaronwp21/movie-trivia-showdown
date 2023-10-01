@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useContext } from 'react';
+import React, { useCallback, useEffect, useState, useMemo, useContext } from 'react';
 import { QuestionsContext } from '@/components/contexts/questions.context';
 import Layout from '@/components/Layout';
 import { getCategories } from '@/lib/hygraph/requests';
@@ -12,6 +12,7 @@ import Results from '@/components/Results';
 export default function Home({ data }: hygraphData) {
   const dataArr: questionModal[] = useMemo(() => [], []);
   const allQuestions: questionModal[] = useMemo(() => [], []);
+  const [roundThreeCategories, setRoundThreeCategories] = useState<questionModal[]>([]);
 
   const { startRound2, startRound3, startResults } =
     useContext(QuestionsContext);
@@ -37,16 +38,17 @@ export default function Home({ data }: hygraphData) {
     return allQuestions;
   }, [allQuestions, data]);
 
-  const roundThreeCategories = useCallback(() => {
+  useEffect(() => {
+    const categories = [];
     for (const [key, value] of Object.entries(data)) {
-      dataArr.push({
+      categories.push({
         category: key,
         questionDetails: value,
       });
     }
-    shuffle(dataArr);
-    return dataArr;
-  }, [dataArr, data]);
+    shuffle(categories);
+    setRoundThreeCategories(categories);
+  }, [data]);
 
   return (
     <Layout>
@@ -61,7 +63,7 @@ export default function Home({ data }: hygraphData) {
         ''
       )}
       {startRound3 === true && startResults === false ? (
-        <RoundThree categories={roundThreeCategories()} />
+        <RoundThree categories={roundThreeCategories} />
       ) : (
         ''
       )}
