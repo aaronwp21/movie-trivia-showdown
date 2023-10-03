@@ -6,7 +6,7 @@ function Question({ questionNum, questionDetails, score, updateScore, currentQue
 
   const onSubmit = () => {
     if (inputValue.current) {
-      if (inputValue.current.value === questionDetails.answer) {
+      if (inputValue.current.value.toLowerCase() === questionDetails.answer.toLowerCase()) {
         updateScore(score + 1)
         inputValue.current.value = ''
         updateCurrentQuestionNum(currentQuestionNum + 1);
