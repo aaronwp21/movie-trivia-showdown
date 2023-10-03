@@ -96,11 +96,11 @@ function RoundThree({ categories }: RoundThreeProps) {
             </div>
             <div className="flex justify-center">
               <button
-                onClick={() => setConfirmed(true)}
+                onClick={chosenNumbers.length === 3 ? () => setConfirmed(true) : () => ''}
                 className={`px-8 py-2 rounded-lg ${
                   chosenNumbers.length === 3
                     ? 'bg-white text-primary font-bold cursor-pointer'
-                    : 'bg-gray-500'
+                    : 'bg-gray-500 cursor-not-allowed'
                 } sm:text-2xl`}
               >
                 Confirm
