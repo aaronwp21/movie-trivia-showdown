@@ -12,12 +12,13 @@ const round3Rules = [
   'Questions Are Worth 1 Point Each',
 ];
 
-const oneToNineteen = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+const oneToTen = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
 function RoundThree({ categories }: RoundThreeProps) {
   const [started, setStarted] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [chosenNumbers, setChosenNumbers] = useState<number[]>([]);
+  const [chosenNumbersForArr, setChosenNumbersForArr] = useState<number[]>([]);
   const [currentQuestionNum, setCurrentQuestionNum] = useState(0);
 
   const { round3Score, onUpdateRound3Score, onUpdateStartResults } =
@@ -25,6 +26,7 @@ function RoundThree({ categories }: RoundThreeProps) {
 
   const selectNumber = (num: number) => {
     setChosenNumbers([...chosenNumbers, num]);
+    setChosenNumbersForArr([...chosenNumbersForArr, num - 1])
   };
 
   const deselectNumber = (num: number) => {
@@ -32,7 +34,12 @@ function RoundThree({ categories }: RoundThreeProps) {
       return number !== num;
     });
 
+    const newArrayForNumbers = chosenNumbers.filter((number) => {
+      return number !== num - 1;
+    });
+
     setChosenNumbers(newArray);
+    setChosenNumbersForArr(newArrayForNumbers);
   };
 
   const checkNumber = (num: number) => {
@@ -78,7 +85,7 @@ function RoundThree({ categories }: RoundThreeProps) {
               Select 3 Numbers
             </h2>
             <div className="flex flex-wrap justify-center gap-4 mb-8 sm:mb-12">
-              {oneToNineteen.map((number, i) => {
+              {oneToTen.map((number, i) => {
                 return (
                   <div
                     onClick={() => checkNumber(i + 1)}
@@ -112,7 +119,7 @@ function RoundThree({ categories }: RoundThreeProps) {
             <Question
               questionNum={String(currentQuestionNum + 1)}
               questionDetails={
-                categories[chosenNumbers[currentQuestionNum]].questionDetails[
+                categories[chosenNumbersForArr[currentQuestionNum]].questionDetails[
                   currentQuestionNum
                 ]
               }
